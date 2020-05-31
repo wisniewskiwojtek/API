@@ -8,9 +8,6 @@
     "description" : "This is a simple songs API. It allows: adding, editing, viewing, deleting songs from the collection.",
     "version" : "1.0.0",
     "title" : "Music API",
-    "contact" : {
-      "email" : "you@your-company.com"
-    },
     "license" : {
       "name" : "Apache 2.0",
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -26,7 +23,7 @@
         "tags" : [ "songs" ],
         "summary" : "show list of songs",
         "operationId" : "getSongs",
-        "description" : "Displays list of songs.\n It is possible to search for songs title by given phrase in search parameter.\n It is possible to sort returned list of songs by parameters e.g. title, author in ascending or descending order. It is possible to paginate list of songs by setting offset and limit parameters. Default value for offset is 0 and 20 for limit.",
+        "description" : "Displays list of songs.\n It is possible to search for songs title by given phrase in search parameter.\n It is possible to sort returned list of songs by parameters e.g. title, author in ascending or descending order.\n It is possible to paginate list of songs by setting offset and limit parameters. Default value for offset is 0 and 20 for limit.",
         "parameters" : [ {
           "in" : "query",
           "name" : "search",
