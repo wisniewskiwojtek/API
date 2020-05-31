@@ -5,7 +5,7 @@
     "url" : "https://virtserver.swaggerhub.com/wisniewskiwojtek/music/1.0.0"
   } ],
   "info" : {
-    "description" : "This is a simple music API",
+    "description" : "This is a simple songs API. It allows: adding, editing, viewing, deleting songs from the collection.",
     "version" : "1.0.0",
     "title" : "Music API",
     "contact" : {
@@ -26,7 +26,7 @@
         "tags" : [ "songs" ],
         "summary" : "show list of songs",
         "operationId" : "getSongs",
-        "description" : "Displays basic info about list of songs",
+        "description" : "Displays list of songs.\n It is possible to search for songs title by given phrase in search parameter.\n It is possible to sort returned list of songs by parameters e.g. title, author in ascending or descending order. It is possible to paginate list of songs by setting offset and limit parameters. Default value for offset is 0 and 20 for limit.",
         "parameters" : [ {
           "in" : "query",
           "name" : "search",
@@ -41,7 +41,8 @@
           "schema" : {
             "type" : "integer",
             "format" : "int32",
-            "minimum" : 1
+            "minimum" : 1,
+            "default" : 0
           }
         }, {
           "in" : "query",
@@ -51,7 +52,8 @@
             "type" : "integer",
             "format" : "int32",
             "minimum" : 1,
-            "maximum" : 50
+            "maximum" : 50,
+            "default" : 20
           }
         }, {
           "in" : "query",
