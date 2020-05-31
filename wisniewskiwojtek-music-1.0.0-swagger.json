@@ -7,7 +7,7 @@
   "info" : {
     "description" : "This is a simple songs API. It allows: adding, editing, viewing, deleting songs from the collection.",
     "version" : "1.0.0",
-    "title" : "Music API",
+    "title" : "Songs API",
     "license" : {
       "name" : "Apache 2.0",
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
