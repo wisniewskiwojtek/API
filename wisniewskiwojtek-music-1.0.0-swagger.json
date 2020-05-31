@@ -1,0 +1,205 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/wisniewskiwojtek/music/1.0.0"
+  } ],
+  "info" : {
+    "description" : "This is a simple music API",
+    "version" : "1.0.0",
+    "title" : "Music API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "songs",
+    "description" : "Operations on songs."
+  } ],
+  "paths" : {
+    "/songs" : {
+      "get" : {
+        "tags" : [ "songs" ],
+        "summary" : "show list of songs",
+        "operationId" : "getSongs",
+        "description" : "Displays basic info about list of songs",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "search",
+          "description" : "phrase to search in songs title",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "offset",
+          "description" : "how many songs to skip from beginning",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 1
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of songs to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 1,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "orderBy",
+          "description" : "paremeter of song to order by",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "orderDirection",
+          "description" : "direction of ordering",
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "ASC", "DESC" ]
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "list of songs",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Song"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "required parameters are missing"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "songs" ],
+        "summary" : "adds new song",
+        "operationId" : "addSong",
+        "description" : "Adds a song to collection",
+        "responses" : {
+          "201" : {
+            "description" : "song created"
+          },
+          "400" : {
+            "description" : "invalid parameters provided"
+          },
+          "409" : {
+            "description" : "song already exists"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Song"
+              }
+            }
+          },
+          "description" : "Song to add"
+        }
+      },
+      "put" : {
+        "tags" : [ "songs" ],
+        "summary" : "udpates song",
+        "operationId" : "updateSong",
+        "description" : "updates song parameters",
+        "responses" : {
+          "201" : {
+            "description" : "song updated"
+          },
+          "400" : {
+            "description" : "invalid parameters provided"
+          },
+          "404" : {
+            "description" : "song not found"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Song"
+              }
+            }
+          },
+          "description" : "Song to update"
+        }
+      },
+      "delete" : {
+        "tags" : [ "songs" ],
+        "summary" : "Delete song",
+        "description" : "Delete song with given id parameter",
+        "operationId" : "deleteUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The id of song that needs to be deleted",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Song has been deleted"
+          },
+          "400" : {
+            "description" : "Invalid song id supplied"
+          },
+          "404" : {
+            "description" : "Song not found"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Song" : {
+        "type" : "object",
+        "required" : [ "id", "title", "author", "album" ],
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "description" : "Song identifier.",
+            "format" : "int32",
+            "example" : 3
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "Song title.",
+            "example" : "Du hast"
+          },
+          "author" : {
+            "type" : "string",
+            "description" : "Song author.",
+            "example" : "Rammstein"
+          },
+          "album" : {
+            "type" : "string",
+            "description" : "Album which contains the song",
+            "example" : "Sehnsucht"
+          }
+        }
+      }
+    }
+  }
+}
